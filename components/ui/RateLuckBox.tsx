@@ -1,9 +1,6 @@
 import { useSignal } from "@preact/signals";
-import { useEffect } from "preact/hooks";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-
-import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
 
 // lootBox
 export interface Product {
@@ -23,13 +20,13 @@ export interface Props {
     interval?: number;
 }
 
-const DEFAULT_PROPS = {
-    images: [
+const DEFAULT_PROPS: Props = {
+    imgs: [
         {
             alt: "/loot",
             action: {
               name: "Camera",
-              price: "300",
+              price: 300,
               rate: "0.03%"
             },
             mobile:
@@ -41,7 +38,7 @@ const DEFAULT_PROPS = {
             alt: "/loot",
             action: {
               name: "Blusa",
-              price: "120",
+              price: 120,
               rate: "0.54%"
             },
             mobile:
@@ -53,7 +50,7 @@ const DEFAULT_PROPS = {
             alt: "/loot",
             action: {
               name: "Xbox360",
-              price: "800",
+              price: 800,
               rate: "0.001%",
             },
             mobile:
@@ -65,7 +62,7 @@ const DEFAULT_PROPS = {
             alt: "/loot",
             action: {
               name: "Mouse",
-              price: "70",
+              price: 70,
               rate: "0.8%"
             },
             mobile:
@@ -77,7 +74,7 @@ const DEFAULT_PROPS = {
             alt: "/loot",
             action: {
               name: "Pente",
-              price: "10",
+              price: 10,
               rate: "1.32%"
             },
             mobile:
@@ -89,11 +86,11 @@ const DEFAULT_PROPS = {
     preload: true
 }
 
-const nullObjectProduct = {
+const nullObjectProduct: Product = {
     alt: "/loot",
     action: {
       name: "Box",
-      price: "12.99",
+      price: 12.99,
       rate: "100 coins"
     },
     mobile:
@@ -103,11 +100,11 @@ const nullObjectProduct = {
 }
 
 const RateLuckBox = (props: Props) => {
-    const { imgs, preload, interval } = { ...DEFAULT_PROPS, ...props };
+    const { imgs, preload } = { ...DEFAULT_PROPS, ...props };
 
-    const selectProduct = useSignal(nullObjectProduct);
+    const selectProduct = useSignal<Product>(nullObjectProduct);
 
-    const handleSelectProduct = (e) => {
+    const handleSelectProduct = (e: Product) => {
         selectProduct.value = {...e}
     }
 
@@ -161,14 +158,8 @@ const RateLuckBox = (props: Props) => {
                 <div class="flex flex-col justify-between w-[80%] h-full ml-[0.8%]">
                     <div class="h-[83%] flex justify-center rounded-tr-lg relative">
 
-                        <Picture class={`
-                            ${(selectProduct.value.id != 0)? "h-[70%]" : "h-full w-full"} 
-                            leading-[70%]
-                            rounded-tr-lg
-                            m-auto`
-                        }
-                        preload={preload}>
-                                            
+                        <Picture class="h-[70%] leading-[70%] rounded-tr-lg m-auto" preload={preload}>
+                              
                             <Source
                             media="(min-width: 750px)"
                             width={240}
