@@ -111,17 +111,6 @@ const RateLuckBox = (props: Props) => {
         selectProduct.value = {...e}
     }
 
-    // useEffect((e) => {
-    //     const url = `https://dash.deno.com/playground/fresh-badger-81`
-
-    //     const result = fetch(url).then(res => res.json()).then(obj => {
-    //         return obj
-    //     })
-        
-    //     result.then(data => console.log(data))
-
-    // }, [])
-
     return (
         <div class="w-full">
             <div class="w-[435px] max-[480px]:w-[355px] h-[355px] max-[480px]:h-[325px] flex m-3 mr-auto max-[480px]:ml-auto transition-all duration-1000">
